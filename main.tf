@@ -16,7 +16,7 @@ variable "SECRET_KEY" {
     type = string
 }
 
-# Configure the AWS Provider
+# AWS Provider
 provider "aws" {
   region = "us-west-1"
   access_key = var.ACCESS_KEY
@@ -44,7 +44,7 @@ resource "aws_s3_bucket" "my-backend-bucket" {
   }
 }
 
-resource "aws_dynabodb_table" "terraform_lock" {
+resource "aws_dynamodb_table" "terraform_lock" {
   name = "terraform-state-locking"
   billing = "PAY_PER_REQUEST"
   hash_key = "LockID"
@@ -171,7 +171,6 @@ resource "aws_eip" "one" {
   ]
 }
 
-# prints out ip to the terminal after 'apply' 
 output "server_ip"  {
   value = aws_eip.one.public_ip 
 }
